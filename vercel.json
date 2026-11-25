@@ -1,0 +1,18 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "build": { "env": { "VITE_BASE": "/" } },
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 30,
+      "includeFiles": "{config,accounts,orders,products,templates}/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index" },
+    { "source": "/admin", "destination": "/api/index" },
+    { "source": "/admin/:path*", "destination": "/api/index" },
+    { "source": "/static/:path*", "destination": "/api/index" },
+    { "source": "/((?!assets/|images/).*)", "destination": "/index.html" }
+  ]
+}
